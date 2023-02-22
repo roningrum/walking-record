@@ -27,6 +27,7 @@ Route::group(['middleware'=>['auth:sanctum']], function(){
     });
     Route::get('walk',[APIWalkController::class, 'index']);
     Route::post('walk/tambah',[APIWalkController::class, 'store']);
+    //edit
     Route::post('/user/edit/{kode_user}',[UserController::class, 'update']);
   
 
