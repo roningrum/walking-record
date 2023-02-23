@@ -55,7 +55,7 @@ class UserController extends Controller
         $user->update([
             'password' => Hash::make($request->password),
         ]);
-        dd($user);
+        dd($user->password);
         return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
     }
 }

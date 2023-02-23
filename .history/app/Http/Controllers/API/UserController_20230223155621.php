@@ -45,17 +45,17 @@ class UserController extends Controller
         //     return response()->json($validator->errors(), 422);
         // }
 
-      
+        $user = User::where('kode_user', $request->kode_user);
 
-        if(!Hash::check($request->old_password, $request->password)){
+        if(!Hash::check($request->old_password, auth()->user()->password)){
             return back()->with('Error', "Password Tidak Sama");
         }
 
-        $user = User::where('kode_user', $request->kode_user);
+  
         $user->update([
             'password' => Hash::make($request->password),
         ]);
-        dd($user);
+        dd($user->password);
         return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
     }
 }

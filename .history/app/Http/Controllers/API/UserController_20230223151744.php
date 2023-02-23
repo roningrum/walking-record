@@ -36,26 +36,19 @@ class UserController extends Controller
 
     public function updatePassword(User $user, Request $request){
         $validator = Validator::make($request->all(),[
-            'old_password'=>['required','string',Password::min(8)->mixedCase()],
             'password'=>['required','string',Password::min(8)->mixedCase()],
             // 'password'=>'required|min:8'
         ]);
 
-        // if($validator->fails()){
-        //     return response()->json($validator->errors(), 422);
-        // }
-
-      
-
-        if(!Hash::check($request->old_password, $request->password)){
-            return back()->with('Error', "Password Tidak Sama");
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
         }
 
         $user = User::where('kode_user', $request->kode_user);
         $user->update([
             'password' => Hash::make($request->password),
         ]);
-        dd($user);
+        dd($user->get()->password);
         return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
     }
 }

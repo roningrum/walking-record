@@ -43,11 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function confirmEmail(){
-    //     $this->verified = true;
-    //     $this->token = null;
-    //     $this->save();
-    // }
+    public function confirmEmail(){
+        $this->verified = true;
+        $this->token = null;
+        $this->save();
+    }
 
     //has to Many
     public function walk(){

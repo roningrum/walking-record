@@ -47,7 +47,7 @@ class UserController extends Controller
 
       
 
-        if(!Hash::check($request->old_password, $request->password)){
+        if(!Hash::check($request->old_password, auth()->user()->password)){
             return back()->with('Error', "Password Tidak Sama");
         }
 
@@ -55,7 +55,7 @@ class UserController extends Controller
         $user->update([
             'password' => Hash::make($request->password),
         ]);
-        dd($user);
+        dd($user->password);
         return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
     }
 }
