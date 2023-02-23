@@ -30,6 +30,4 @@ class UserController extends Controller
         ]);
         return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
     }
-
-    //ubah password
 }

@@ -14,11 +14,11 @@ class UserController extends Controller
     public function update(User $user, Request $request){
 
         $validator = Validator::make($request->all(),[
-            'name'=>'required|string',
-            'email'=>'required|email',
+            'name'=>'required'|'string',
+            'email'=> 'required|email|unique',
             // 'password'=>'required|min:8'
         ]);
-
+        
         if($validator->fails()){
             return response()->json($validator->errors(), 422);
         }
@@ -26,10 +26,10 @@ class UserController extends Controller
         $user = User::where('kode_user', $request->kode_user);
         $user->update([
             'name' => $request->name,
-            'email'=>$request->email
         ]);
-        return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
-    }
 
-    //ubah password
+        dd($user);
+
+        return response()->json(['message'=>'sukses diubah','data'=>$user->name]);
+    }
 }

@@ -15,7 +15,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(),[
             'name'=>'required|string',
-            'email'=>'required|email',
+            'email'=> 'required|email',
             // 'password'=>'required|min:8'
         ]);
 
@@ -26,10 +26,7 @@ class UserController extends Controller
         $user = User::where('kode_user', $request->kode_user);
         $user->update([
             'name' => $request->name,
-            'email'=>$request->email
         ]);
-        return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
+        return response()->json(['message'=>'sukses diubah','data'=>$user->name]);
     }
-
-    //ubah password
 }

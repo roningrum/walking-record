@@ -28,8 +28,6 @@ class UserController extends Controller
             'name' => $request->name,
             'email'=>$request->email
         ]);
-        return response()->json(['message'=>'sukses diubah','data'=>$user->get()]);
+        return response()->json(['message'=>'sukses diubah','data'=>$user->save()]);
     }
-
-    //ubah password
 }
